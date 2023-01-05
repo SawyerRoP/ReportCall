@@ -16,7 +16,7 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         try {
-            Jsoup.connect("http://119.160.219.22/hlpdsk_pcc/index.php").timeout(6000).get();
+            Jsoup.connect("http://10.20.15.38/hlpdsk_pcc/index.php").timeout(6000).get();
         } catch (Exception e) {
             System.exit(0);
         }
@@ -34,11 +34,11 @@ public class Main {
         String d = lastOfMount.toString();
         String lastDate = d.substring(8, 10);
         String lastMount = d.substring(5, 7);
-        Document getCookie = Jsoup.connect("http://119.160.219.22/hlpdsk_pcc/index.php").timeout(6000).get();
+        Document getCookie = Jsoup.connect("http://10.20.15.38/hlpdsk_pcc/index.php").timeout(6000).get();
         String cookie = getCookie.connection().cookieStore().getCookies().get(0).getValue();
-        Document data = Jsoup.connect("http://119.160.219.22/hlpdsk_pcc/check_login.php").data("username", "tech").data("password", "lhs2541").data("Submit2", "").cookie("PHPSESSID", cookie).timeout(6000).post();
-        Document getCall = data.connection().url("http://119.160.219.22/hlpdsk_pcc/helpdesk/report_by_supplier2.php").data("id_project", "ALL").
-                data("type_service", "ALL").data("date_start", "27" + "-" + mount + "-" + year).data("date_end", lastDate + "-" + lastMount + "-" + year).data("start", "0").
+        Document data = Jsoup.connect("http://10.20.15.38/hlpdsk_pcc/check_login.php").data("username", "tech").data("password", "lhs2541").data("Submit2", "").cookie("PHPSESSID", cookie).timeout(6000).post();
+        Document getCall = data.connection().url("http://10.20.15.38/hlpdsk_pcc/helpdesk/report_by_supplier2.php").data("id_project", "ALL").
+                data("type_service", "ALL").data("date_start", day + "-" + mount + "-" + year).data("date_end", lastDate + "-" + lastMount + "-" + year).data("start", "0").
                 data("submit", "Find").data("User-Agent", " Mozilla/5.0 (Macintosh").cookie("PHPSESSID", cookie).timeout(6000).post();
 
 
@@ -103,8 +103,8 @@ public class Main {
         if (post > oldCall) {
             String compare = Integer.toString(post - (post - oldCall));
             System.out.println(compare);
-            Document getCallCompare = data.connection().url("http://119.160.219.22/hlpdsk_pcc/helpdesk/report_by_supplier2.php").data("id_project", "ALL").
-                    data("type_service", "ALL").data("date_start", "27" + "-" + mount + "-" + year).data("date_end", lastDate + "-" + lastMount + "-" + year).data("start", compare).
+            Document getCallCompare = data.connection().url("http://10.20.15.38/hlpdsk_pcc/helpdesk/report_by_supplier2.php").data("id_project", "ALL").
+                    data("type_service", "ALL").data("date_start", day + "-" + mount + "-" + year).data("date_end", lastDate + "-" + lastMount + "-" + year).data("start", compare).
                     data("submit", "Find").data("User-Agent", " Mozilla/5.0 (Macintosh").cookie("PHPSESSID", cookie).timeout(6000).post();
 
             //System.out.println(a);
