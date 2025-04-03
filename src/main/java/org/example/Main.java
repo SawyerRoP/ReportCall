@@ -36,7 +36,7 @@ public class Main {
         String lastMount = d.substring(5, 7);
         Document getCookie = Jsoup.connect("http://10.20.15.38/hlpdsk_pcc/index.php").timeout(6000).get();
         String cookie = getCookie.connection().cookieStore().getCookies().get(0).getValue();
-        Document data = Jsoup.connect("http://10.20.15.38/hlpdsk_pcc/check_login.php").data("username", "tech").data("password", "lhs2541").data("Submit2", "").cookie("PHPSESSID", cookie).timeout(6000).post();
+        Document data = Jsoup.connect("http://10.20.15.38/hlpdsk_pcc/check_login.php").data("username", "").data("password", "").data("Submit2", "").cookie("PHPSESSID", cookie).timeout(6000).post();
         Document getCall = data.connection().url("http://10.20.15.38/hlpdsk_pcc/helpdesk/report_by_supplier2.php").data("id_project", "ALL").
                 data("type_service", "ALL").data("date_start", day + "-" + mount + "-" + year).data("date_end", lastDate + "-" + lastMount + "-" + year).data("start", "0").
                 data("submit", "Find").data("User-Agent", " Mozilla/5.0 (Macintosh").cookie("PHPSESSID", cookie).timeout(6000).post();
